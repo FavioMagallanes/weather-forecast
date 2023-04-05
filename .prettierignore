@@ -1,0 +1,11 @@
+node_modules
+dist
+build
+public
+coverage
+/package.json
+yarn.lock
+babel.config.js
+jest.config.js
+setup-jest.ts
+*.html
