@@ -101,3 +101,9 @@ body {
 .thunder {
   animation: thunder 5s linear infinite;
 }
+
+select:focus {
+  outline: none;
+  border-color: transparent;
+  box-shadow: none;
+}
