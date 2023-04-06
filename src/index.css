@@ -92,11 +92,6 @@ body {
   }
 }
 
-/* Aplica la animación de lluvia al elemento .rain */
-.rain {
-  animation: rain 5s linear infinite;
-}
-
 /* Aplica la animación de trueno al elemento .thunder */
 .thunder {
   animation: thunder 5s linear infinite;
@@ -106,4 +101,14 @@ select:focus {
   outline: none;
   border-color: transparent;
   box-shadow: none;
+}
+
+.bg-effect {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.bg-effect:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
 }

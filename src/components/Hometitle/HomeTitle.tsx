@@ -4,7 +4,7 @@ const HomeTitle = (): JSX.Element => {
   return (
     <div className="flex gap-8 justify-center">
       <div className="gradient-text">
-        <span className="text-white title text-8xl font-extrabold tracking-[-.06em] text-center ">
+        <span className="text-white title text-8xl font-extrabold tracking-[-.06em] text-center">
           Weather
         </span>
       </div>
@@ -13,7 +13,7 @@ const HomeTitle = (): JSX.Element => {
           Forecast
         </span>
       </div>
-      <div className="rain">
+      <div>
         <div className="thunder">
           <img className="h-12 w-12" src={thunder} alt="thunder" />
         </div>
