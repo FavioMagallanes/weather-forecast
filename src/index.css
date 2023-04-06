@@ -1,13 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
 }
 
 body {
-  background-color: #000;
+  background: linear-gradient(to bottom, #1a202c, #2d3748);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(-45deg, #336699, #33cccc, #ff9933, #ff6600);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 15s ease infinite;
+}
+
+/* Define la animación de parpadeo */
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Aplica la animación de parpadeo al elemento .storm-icon */
+.storm-icon {
+  animation: blink 2s ease-in-out infinite;
+}
+
+/* Define la animación del trueno */
+@keyframes thunder {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  10% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  30% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* Aplica la animación de lluvia al elemento .rain */
+.rain {
+  animation: rain 5s linear infinite;
+}
+
+/* Aplica la animación de trueno al elemento .thunder */
+.thunder {
+  animation: thunder 5s linear infinite;
 }
