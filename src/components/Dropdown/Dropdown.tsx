@@ -6,7 +6,7 @@ const Dropdown = (): JSX.Element => {
     { value: '4', label: 'Roma' },
   ];
   return (
-    <div className="relative mt-2 bg-effect">
+    <div className="mt-2 bg-effect">
       <select className="focus:shadow-outline cursor-pointer appearance-none rounded-lg border-none bg-gray-800 py-2 px-4 pr-8 leading-tight text-slate-500 shadow-xl focus:outline-none shadow-black focus:border-transparent">
         <option
           className="text-sm text-slate-400"

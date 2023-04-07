@@ -1,17 +1,28 @@
-import { Dropdown } from './components/Dropdown';
-import { Forecastcard } from './components/Forecastcard';
-import { HomeTitle } from './components/Hometitle';
+import {
+  CurrentForecastCard,
+  Dropdown,
+  HomeTitle,
+  UpcomingForecast,
+} from './components';
 
 const App = (): JSX.Element => {
   return (
-    <div>
-      <HomeTitle />
-      <div className="flex flex-col items-center mt-4 gap-12">
-        <div className="mb-2">
-          <Dropdown />
+    <div className="container">
+      <div className="flex flex-col items-center">
+        <HomeTitle />
+        <Dropdown />
+      </div>
+      <div className="flex items-center mt-16  gap-12">
+        <div className="mb-36">
+          <CurrentForecastCard />
         </div>
-        <div>
-          <Forecastcard />
+        <div className="flex flex-wrap">
+          <UpcomingForecast />
+          <UpcomingForecast />
+          <UpcomingForecast />
+          <UpcomingForecast />
+          <UpcomingForecast />
+          <UpcomingForecast />
         </div>
       </div>
     </div>

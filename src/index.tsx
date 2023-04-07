@@ -10,8 +10,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <main className="container p-8">
-      <App />
-    </main>
+    <App />
   </React.StrictMode>
 );
