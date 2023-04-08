@@ -3,4 +3,5 @@ export { default as CurrentForecastCard } from './CurrentForecastCard/CurrentFor
 export { default as Dropdown } from './Dropdown/Dropdown';
 export { default as Footer } from './Footer/Footer';
 export { default as HomeTitle } from './Hometitle/HomeTitle';
+export { default as Spinner } from './Spinner/Spinner';
 export { default as UpcomingForecast } from './UpcomingForecast/UpcomingForecast';
