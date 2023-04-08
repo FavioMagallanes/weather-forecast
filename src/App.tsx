@@ -1,4 +1,5 @@
 import {
+  Button,
   CurrentForecastCard,
   Dropdown,
   Footer,
@@ -10,11 +11,16 @@ const App = (): JSX.Element => {
   return (
     <>
       <div className="container">
-        <div className="flex flex-col items-center">
-          <HomeTitle />
-          <Dropdown />
+        <HomeTitle />
+        <div className="flex justify-center items-center gap-6">
+          <div>
+            <Dropdown />
+          </div>
+          <div>
+            <Button text="Obtener ubicación actual" />
+          </div>
         </div>
-        <div className="flex items-center mt-16  gap-12">
+        <div className="flex items-center mt-16 gap-12">
           <div className="mb-36">
             <CurrentForecastCard />
           </div>
