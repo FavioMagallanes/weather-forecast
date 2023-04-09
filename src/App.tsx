@@ -1,4 +1,5 @@
 import { Spinner } from 'flowbite-react';
+import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 import {
@@ -15,23 +16,24 @@ import { getForecastByCity } from './services/forecast.service';
 
 const App = (): JSX.Element => {
   const { latitude, longitude } = useLocation();
-
+  const { isLoading, forecast, fetchForecast, setForecast } = useForecast({
+    latitude,
+    longitude,
+  });
   const [showMessage, setShowMessage] = useState<boolean>(true);
 
   useEffect(() => {
     setShowMessage(latitude === null || longitude === null);
   }, [latitude, longitude]);
 
-  const { isLoading, forecast, fetchForecast, setForecast } = useForecast({
-    latitude,
-    longitude,
-  });
-
   const handleSelectCity = async (cityName: string): Promise<void> => {
     try {
       const { data } = await getForecastByCity({ name: cityName });
       if (data != null) {
-        setForecast(data);
+        await new Promise<void>(resolve => {
+          setForecast(data);
+          resolve();
+        });
       }
     } catch (error) {
       throw new Error('Error al obtener el pronóstico');
@@ -39,21 +41,32 @@ const App = (): JSX.Element => {
   };
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.75, ease: 'easeOut', delay: 0.1 }}
+    >
       <div className="h-screen flex flex-col items-center justify-center">
         {isLoading ? (
           <Spinner />
         ) : (
           <>
             <div className="container">
-              <HomeTitle />
+              <div>
+                <HomeTitle />
+              </div>
               {showMessage ? (
-                <div className=" mt-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.75, ease: 'easeOut', delay: 0.5 }}
+                  className=" mt-6"
+                >
                   <p className="text-slate-400 title text-3xl font-extrabold tracking-[-.06em] text-center">
                     La ubicación actual no está disponible. Por favor, permita
                     el acceso a la ubicación en su navegador.
                   </p>
-                </div>
+                </motion.div>
               ) : (
                 <div className="flex justify-center items-center gap-6">
                   <div>
@@ -70,8 +83,14 @@ const App = (): JSX.Element => {
                   </div>
                 </div>
               )}
+
               {!showMessage && (
-                <div className="flex items-center mt-16 gap-12">
+                <motion.div
+                  className="flex items-center mt-16 gap-12"
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.75, ease: 'easeOut', delay: 0.9 }}
+                >
                   <div className="mb-36">
                     <CurrentForecastCard
                       isLoading={isLoading}
@@ -84,14 +103,14 @@ const App = (): JSX.Element => {
                       forecast={forecast}
                     />
                   </div>
-                </div>
+                </motion.div>
               )}
             </div>
           </>
         )}
       </div>
       <Footer />
-    </>
+    </motion.div>
   );
 };
 
