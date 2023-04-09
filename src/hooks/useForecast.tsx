@@ -15,6 +15,8 @@ const useForecast = ({
   isLoading: boolean;
   forecast: Forecast | null;
   fetchForecast: () => Promise<void>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setForecast: React.Dispatch<React.SetStateAction<Forecast | null>>;
 } => {
   const [isLoading, setIsLoading] = useState(false);
   const [forecast, setForecast] = useState<Forecast | null>(null);
@@ -53,7 +55,7 @@ const useForecast = ({
     };
   }, [latitude, longitude]);
 
-  return { isLoading, forecast, fetchForecast };
+  return { isLoading, forecast, fetchForecast, setIsLoading, setForecast };
 };
 
 export default useForecast;

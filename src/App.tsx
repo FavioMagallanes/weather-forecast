@@ -9,35 +9,34 @@ import {
   HomeTitle,
   UpcomingForecast,
 } from './components';
-import { useForecast } from './hooks';
+import { defaultCities } from './constans/defaultCities';
+import { useForecast, useLocation } from './hooks';
+import { getForecastByCity } from './services/forecast.service';
 
 const App = (): JSX.Element => {
-  const [latitude, setLatitude] = useState<number | null>(null);
-  const [longitude, setLongitude] = useState<number | null>(null);
+  const { latitude, longitude } = useLocation();
+
   const [showMessage, setShowMessage] = useState<boolean>(true);
 
   useEffect(() => {
-    const getLocation = (): void => {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          setLatitude(position.coords.latitude);
-          setLongitude(position.coords.longitude);
-          setShowMessage(false);
-        },
-        error => {
-          setShowMessage(true);
-          throw new Error(error.message);
-        }
-      );
-    };
+    setShowMessage(latitude === null || longitude === null);
+  }, [latitude, longitude]);
 
-    getLocation();
-  }, []);
-
-  const { isLoading, forecast, fetchForecast } = useForecast({
+  const { isLoading, forecast, fetchForecast, setForecast } = useForecast({
     latitude,
     longitude,
   });
+
+  const handleSelectCity = async (cityName: string): Promise<void> => {
+    try {
+      const { data } = await getForecastByCity({ name: cityName });
+      if (data != null) {
+        setForecast(data);
+      }
+    } catch (error) {
+      throw new Error('Error al obtener el pronóstico');
+    }
+  };
 
   return (
     <>
@@ -58,7 +57,10 @@ const App = (): JSX.Element => {
               ) : (
                 <div className="flex justify-center items-center gap-6">
                   <div>
-                    <Dropdown />
+                    <Dropdown
+                      handleSelectCity={handleSelectCity}
+                      options={defaultCities}
+                    />
                   </div>
                   <div>
                     <Button

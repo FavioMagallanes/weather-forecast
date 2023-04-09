@@ -36,9 +36,6 @@ const CurrentForecastCard = ({
               <p className="text-8xl text-orange-500 font-extrabold tracking-[-.06em] text-center">
                 {formatedTemp(forecast?.current.temp_c ?? 0)}°
               </p>
-              <h2 className="text-orange-300 text-lg font-bold text-center">
-                Feels like
-              </h2>
             </div>
             <div className="mt-6 flex items-center absolute top-[-180px] -right-5">
               <img

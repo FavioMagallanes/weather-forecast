@@ -31,9 +31,6 @@ const UpcomingForecast = ({ forecast }: UpcomingForecastProps): JSX.Element => {
               <p className="text-6xl text-orange-500 font-extrabold tracking-[-.06em] text-center">
                 {formatedTemp(day.day.avgtemp_c)}°
               </p>
-              <h2 className="text-orange-300 text-xs text-center font-bold">
-                Feels like
-              </h2>
             </div>
             <div className="mt-6 flex justify-center items-center absolute top-[-105px] -right-20">
               <img
