@@ -49,6 +49,8 @@ Weather app, with React, Typescript and Tailwind
 
 ## Demo
 
+- https://weather-forecast-challenge.netlify.app/
+
 ## Note
 
 🚩 It is not good practice to expose the API KEY, in this case it is left so
