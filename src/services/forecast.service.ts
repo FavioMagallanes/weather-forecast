@@ -17,8 +17,6 @@ export const getForecast = async (
   const BASE_URL = process.env.REACT_APP_BASE_URL ?? '';
   const url = `${BASE_URL}/forecast.json?key=${API_KEY}&q=${latitude},${longitude}&days=7&lang=es`;
 
-  // throw new Error('Error al obtener el pronóstico');
-
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error('Error al obtener el pronóstico');
@@ -32,8 +30,6 @@ export const getForecastByCity = async ({ name }: City): Promise<Response> => {
   const API_KEY = process.env.REACT_APP_API_KEY ?? '';
   const BASE_URL = process.env.REACT_APP_BASE_URL ?? '';
   const url = `${BASE_URL}/forecast.json?key=${API_KEY}&q=${name}&days=7&lang=es`;
-
-  // throw new Error('Error al obtener el pronóstico');
 
   const response = await fetch(url);
   if (!response.ok) {

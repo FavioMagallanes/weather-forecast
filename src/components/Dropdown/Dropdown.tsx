@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface Option {
+export interface Option {
   value: string;
   label: string;
 }
 
-interface Props {
+export interface Props {
   options: Option[];
   handleSelectCity: (cityName: string) => void;
 }
