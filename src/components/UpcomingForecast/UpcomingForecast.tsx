@@ -1,7 +1,6 @@
-import { formatDate } from '../../utils/formatedDate';
-import { formatedTemp } from '../../utils/formatedTemp';
+import { formatDate, formatedTemp } from '../../utils';
 import Spinner from '../Spinner/Spinner';
-import { type Forecast } from '@/interfaces/forecastResponse';
+import { type Forecast } from '@/interfaces';
 
 interface UpcomingForecastProps {
   isLoading: boolean;
@@ -36,7 +35,7 @@ const UpcomingForecast = ({ forecast }: UpcomingForecastProps): JSX.Element => {
               <img
                 className="h-16 w-16 thunder"
                 src={day.day.condition.icon}
-                alt="thunder"
+                alt="icon"
               />
             </div>
           </div>

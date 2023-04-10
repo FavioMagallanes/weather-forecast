@@ -1,6 +1,6 @@
-import { formatedTemp } from '../../utils/formatedTemp';
+import { formatedTemp } from '../../utils';
 import Spinner from '../Spinner/Spinner';
-import { type Forecast } from '@/interfaces/forecastResponse';
+import { type Forecast } from '@/interfaces';
 
 interface CurrentForecastCardProps {
   isLoading: boolean;

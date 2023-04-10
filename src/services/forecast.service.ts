@@ -1,4 +1,4 @@
-import { type Forecast } from '../interfaces/forecastResponse';
+import { type Forecast } from '../interfaces';
 
 export interface City {
   name: string;
@@ -13,8 +13,11 @@ export const getForecast = async (
   latitude: number,
   longitude: number
 ): Promise<Forecast> => {
-  const apiKey = '2e204a24471f478281e45120230804';
-  const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${latitude},${longitude}&days=7&lang=es`;
+  const API_KEY = process.env.REACT_APP_API_KEY ?? '';
+  const BASE_URL = process.env.REACT_APP_BASE_URL ?? '';
+  const url = `${BASE_URL}/forecast.json?key=${API_KEY}&q=${latitude},${longitude}&days=7&lang=es`;
+
+  // throw new Error('Error al obtener el pronóstico');
 
   const response = await fetch(url);
   if (!response.ok) {
@@ -26,8 +29,11 @@ export const getForecast = async (
 };
 
 export const getForecastByCity = async ({ name }: City): Promise<Response> => {
-  const apiKey = '2e204a24471f478281e45120230804';
-  const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${name}&days=7&lang=es`;
+  const API_KEY = process.env.REACT_APP_API_KEY ?? '';
+  const BASE_URL = process.env.REACT_APP_BASE_URL ?? '';
+  const url = `${BASE_URL}/forecast.json?key=${API_KEY}&q=${name}&days=7&lang=es`;
+
+  // throw new Error('Error al obtener el pronóstico');
 
   const response = await fetch(url);
   if (!response.ok) {

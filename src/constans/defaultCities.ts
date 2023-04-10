@@ -1,7 +1,7 @@
 export const defaultCities = [
-  { value: 'Barcelona', label: 'Barcelona' },
-  { value: 'Madrid', label: 'Madrid' },
-  { value: 'Paris', label: 'Paris' },
-  { value: 'Manchester', label: 'Manchester' },
-  { value: 'Milán', label: 'Milán' },
+  { value: 'Santa Fe', label: 'Santa Fe' },
+  { value: 'Córdoba', label: 'Córdoba' },
+  { value: 'Mendoza', label: 'Mendoza' },
+  { value: 'Salta', label: 'Salta' },
+  { value: 'Buenos Aires', label: 'Buenos Aires' },
 ];
