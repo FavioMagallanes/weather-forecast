@@ -10,7 +10,7 @@
 body {
   background: linear-gradient(to bottom, #1a202c, #2d3748);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-attachment: fixed;
 }
 
 @keyframes gradient {

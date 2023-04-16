@@ -1,14 +1,13 @@
-import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 import {
-  Button,
-  CurrentForecastCard,
-  Dropdown,
-  Footer,
   HomeTitle,
   UpcomingForecast,
   Spinner,
+  CurrentForecastCard,
+  Dropdown,
+  Button,
+  Footer,
 } from './components';
 import { defaultCities } from './constans';
 import { useForecast, useLocation } from './hooks';
@@ -20,8 +19,8 @@ const App = (): JSX.Element => {
     latitude,
     longitude,
   });
-  const [showMessage, setShowMessage] = useState<boolean>(true);
   const [hasError, setHasError] = useState<boolean>(false);
+  const [showMessage, setShowMessage] = useState<boolean>(true);
 
   useEffect(() => {
     setShowMessage(latitude === null || longitude === null);
@@ -43,110 +42,57 @@ const App = (): JSX.Element => {
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.75, ease: 'easeOut', delay: 0.1 }}
-      >
-        {hasError && (
-          <div className="h-screen">
-            <div className="flex justify-center items-center gap-6">
-              <div>
-                <Dropdown
-                  handleSelectCity={handleSelectCity}
-                  options={defaultCities}
-                />
+      {isLoading ? (
+        <div className="flex justify-center items-center h-screen">
+          <Spinner />
+        </div>
+      ) : (
+        <div className="">
+          <>
+            {showMessage ? (
+              <div className="flex justify-center items-center h-screen">
+                <p className="text-slate-500 title text-3xl font-extrabold tracking-[-.06em] text-center">
+                  La ubicación actual no está disponible. <br /> Por favor,
+                  permita el acceso a la ubicación en su navegador.
+                </p>
               </div>
-              <div>
-                <Button
-                  text="Obtener ubicación actual"
-                  fetchForecast={fetchForecast}
-                />
-              </div>
-            </div>
-            <div className="h-screen flex justify-center items-center">
-              <p className="text-red-400 title text-3xl font-extrabold tracking-[-.06em] text-center">
-                Hubo un error al obtener el pronóstico. Por favor, recargue la
-                página.
-              </p>
-            </div>
-          </div>
-        )}
-        <div
-          className={`h-screen flex flex-col items-center justify-center ${
-            hasError ? 'hidden' : ''
-          }`}
-        >
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            <>
-              <div className="container">
-                <div>
-                  <HomeTitle />
-                </div>
-                {showMessage ? (
-                  <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.75, ease: 'easeOut', delay: 0.5 }}
-                    className=" mt-6"
-                  >
-                    <p className="text-slate-400 title text-3xl font-extrabold tracking-[-.06em] text-center">
-                      La ubicación actual no está disponible. Por favor, permita
-                      el acceso a la ubicación en su navegador.
+            ) : (
+              <>
+                {hasError ? (
+                  <div className="flex justify-center items-center h-screen">
+                    <p className="text-red-500 title text-3xl font-extrabold tracking-[-.06em] text-center">
+                      Se ha producido un error al cargar el pronóstico.
                     </p>
-                  </motion.div>
+                  </div>
                 ) : (
-                  <div className="flex justify-center items-center gap-6">
-                    <div>
+                  <>
+                    <HomeTitle />
+                    <div className="flex justify-center">
+                      <Button
+                        text="Ubicación actual"
+                        fetchForecast={fetchForecast}
+                      />
                       <Dropdown
                         handleSelectCity={handleSelectCity}
                         options={defaultCities}
                       />
                     </div>
-                    <div>
-                      <Button
-                        text="Obtener ubicación actual"
-                        fetchForecast={fetchForecast}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {!showMessage && (
-                  <motion.div
-                    className="flex items-center mt-16 gap-12"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.75, ease: 'easeOut', delay: 0.9 }}
-                  >
-                    {isLoading ? (
-                      <Spinner />
-                    ) : (
-                      <>
-                        <div className="mb-36">
-                          <CurrentForecastCard
-                            isLoading={isLoading}
-                            forecast={forecast}
-                          />
+                    <section className="grid place-items-center place-content-center">
+                      <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+                        <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16">
+                          <CurrentForecastCard forecast={forecast} />
+                          <UpcomingForecast forecast={forecast} />
                         </div>
-                        <div className="flex flex-wrap ml-8">
-                          <UpcomingForecast
-                            isLoading={isLoading}
-                            forecast={forecast}
-                          />
-                        </div>
-                      </>
-                    )}
-                  </motion.div>
+                      </div>
+                    </section>
+                    <Footer />
+                  </>
                 )}
-              </div>
-            </>
-          )}
+              </>
+            )}
+          </>
         </div>
-        <Footer />
-      </motion.div>
+      )}
     </>
   );
 };

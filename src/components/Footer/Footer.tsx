@@ -1,6 +1,6 @@
 const Footer = (): JSX.Element => {
   return (
-    <div className="flex justify-center items-center mt-16 h-24 gap-2 bg-[#1B212D]">
+    <div className="flex justify-center items-center  h-16 gap-2">
       <p className="text-slate-400 text-xs font-bold">
         Personal Pay frontend challenge
       </p>
