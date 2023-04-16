@@ -44,7 +44,6 @@ Weather app, with React, Typescript and Tailwind
 
 ## To do
 
-- Improve responsive
 - End the tests
 
 ## Demo
