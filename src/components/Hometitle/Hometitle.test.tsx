@@ -18,14 +18,14 @@ describe('HomeTitle', () => {
     expect(title).toHaveClass('gradient-text');
     expect(title).toHaveClass('text-white');
     expect(title).toHaveClass('title');
-    expect(title).toHaveClass('text-8xl');
+    expect(title).toHaveClass('text-5xl');
     expect(title).toHaveClass('font-extrabold');
     expect(title).toHaveClass('tracking-[-.06em]');
     expect(title).toHaveClass('text-center');
     expect(subtitle).toHaveClass('gradient-text');
     expect(subtitle).toHaveClass('text-white');
     expect(subtitle).toHaveClass('title');
-    expect(subtitle).toHaveClass('text-8xl');
+    expect(subtitle).toHaveClass('text-5xl');
     expect(subtitle).toHaveClass('font-extrabold');
     expect(subtitle).toHaveClass('tracking-[-.06em]');
     expect(subtitle).toHaveClass('text-center');
