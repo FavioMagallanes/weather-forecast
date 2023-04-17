@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 import {
@@ -30,13 +31,12 @@ const App = (): JSX.Element => {
     try {
       const { data } = await getForecastByCity({ name: cityName });
       if (data != null) {
-        await new Promise<void>(resolve => {
-          setForecast(data);
-          resolve();
-        });
+        setForecast(data);
       }
     } catch (error) {
-      setHasError(true);
+      throw new Error('Error al obtener el pronóstico');
+    } finally {
+      setHasError(false);
     }
   };
 
@@ -47,7 +47,7 @@ const App = (): JSX.Element => {
           <Spinner />
         </div>
       ) : (
-        <div className="">
+        <div>
           <>
             {showMessage ? (
               <div className="flex justify-center items-center h-screen">
@@ -60,8 +60,9 @@ const App = (): JSX.Element => {
               <>
                 {hasError ? (
                   <div className="flex justify-center items-center h-screen">
-                    <p className="text-red-500 title text-3xl font-extrabold tracking-[-.06em] text-center">
-                      Se ha producido un error al cargar el pronóstico.
+                    <p className="text-red-300 title text-3xl font-extrabold tracking-[-.06em] text-center">
+                      Se ha producido un error al cargar el pronóstico. <br />{' '}
+                      Por favor, inténtelo de nuevo más tarde.
                     </p>
                   </div>
                 ) : (
@@ -77,14 +78,36 @@ const App = (): JSX.Element => {
                         options={defaultCities}
                       />
                     </div>
-                    <section className="grid place-items-center place-content-center">
-                      <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-                        <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16">
-                          <CurrentForecastCard forecast={forecast} />
-                          <UpcomingForecast forecast={forecast} />
-                        </div>
+                    <motion.section
+                      className="grid place-items-center place-content-center"
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1.5 }}
+                    >
+                      <div className="max-w-screen-xl px-4 py-1 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+                        <motion.div
+                          className="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16"
+                          initial={{ opacity: 0, y: 50 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 1.5 }}
+                        >
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1.5, delay: 0.2 }}
+                          >
+                            <CurrentForecastCard forecast={forecast} />
+                          </motion.div>
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1.5, delay: 0.4 }}
+                          >
+                            <UpcomingForecast forecast={forecast} />
+                          </motion.div>
+                        </motion.div>
                       </div>
-                    </section>
+                    </motion.section>
                     <Footer />
                   </>
                 )}

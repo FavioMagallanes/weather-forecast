@@ -27,9 +27,10 @@ const useForecast = ({
         setIsLoading(true);
         const forecastData = await getForecast(latitude, longitude);
         setForecast(forecastData);
-        setIsLoading(false);
       } catch (error) {
         throw new Error('Error al obtener el pronóstico');
+      } finally {
+        setIsLoading(false);
       }
     }
   };

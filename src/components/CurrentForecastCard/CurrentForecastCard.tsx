@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 import { formatedTemp } from '../../utils';
 import Spinner from '../Spinner/Spinner';
 import { type Forecast } from '@/interfaces';
@@ -37,9 +39,14 @@ const CurrentForecastCard = ({
           <h2 className="text-orange-300 text-lg md:text-2xl font-bold text-center">
             {forecast?.location.name}
           </h2>
-          <p className="text-6xl md:text-8xl text-orange-500 font-extrabold tracking-[-.06em] text-center">
+          <motion.p
+            className="text-6xl md:text-8xl text-orange-500 font-extrabold tracking-[-.06em] text-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5 }}
+          >
             {formatedTemp(forecast?.current.temp_c ?? 0)}°
-          </p>
+          </motion.p>
           <p className="text-white title text-2xl md:text-3xl font-extrabold tracking-[-.06em] text-center mt-1 -mb-3">
             {forecast?.current.condition.text}
           </p>

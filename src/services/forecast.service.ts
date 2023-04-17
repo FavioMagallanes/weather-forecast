@@ -21,7 +21,6 @@ export const getForecast = async (
   if (!response.ok) {
     throw new Error('Error al obtener el pronóstico');
   }
-
   const data = await response.json();
   return data as Forecast;
 };

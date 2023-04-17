@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <div className="flex justify-center items-center h-screen mt-64 lg:mt-4">
+    <div className="flex justify-center items-center h-screen mt-64 lg:mt-1">
       <App />
     </div>
   </React.StrictMode>
